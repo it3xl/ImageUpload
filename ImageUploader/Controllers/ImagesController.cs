@@ -19,7 +19,7 @@ namespace ImageUploader.Controllers
         }
 
         /// <summary>
-        /// Uplaods an image to the server.
+        /// Uploads an image to the server.
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

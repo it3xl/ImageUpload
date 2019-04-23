@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ImageUploader.Handler;
+﻿using ImageUploader.Handler;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace ImageUploader
 {
@@ -28,7 +18,9 @@ namespace ImageUploader
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                //.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                ;
 
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<ImageWriter.Interface.IImageWriter, ImageWriter.Classes.ImageWriter>();
@@ -54,7 +46,8 @@ namespace ImageUploader
             //    RequestPath = "/StaticFiles"
             //});
 
-            app.UseStaticFiles(); //letting the application know that we need access to wwwroot folder.
+            //letting the application know that we need access to wwwroot folder.
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
             app.UseMvc();
